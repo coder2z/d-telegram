@@ -4,8 +4,8 @@ WORKDIR /app
 ENV GOPROXY https://goproxy.cn
 ENV GO111MODULE on
 COPY . /app
-RUN go mod download
-RUN CGO_ENABLED=0 go build -o tgUpdateApp ./api/update
+RUN go mod tidy -v
+RUN CGO_ENABLED=0 go build -o tgUpdateApp
 
 FROM alpine:3.10
 
@@ -19,4 +19,4 @@ RUN apk update \
 WORKDIR /app
 COPY --from=builder /app/tgUpdateApp /app/tgUpdateApp
 
-CMD ["/tgUpdateApp"]
+CMD ["/app/tgUpdateApp"]
