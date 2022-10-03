@@ -126,7 +126,7 @@ func run(ctx context.Context) error {
 	return client.Run(ctx, func(ctx context.Context) error {
 
 		flow := auth.NewFlow(
-			auth.CodeOnly("+15680544812", codeAuthenticatorFunc),
+			auth.CodeOnly(init.Phone, codeAuthenticatorFunc),
 			auth.SendCodeOptions{},
 		)
 		err := client.Auth().IfNecessary(ctx, flow)
