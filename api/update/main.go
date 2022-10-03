@@ -1,11 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"context"
+	"fmt"
 	"github.com/coder2z/d-telegram/config"
 	"github.com/coder2z/d-telegram/download"
 	"github.com/coder2z/d-telegram/xlog"
 	"github.com/gotd/td/session"
+	"github.com/gotd/td/telegram/auth"
 	"go.uber.org/zap"
 	"os"
 	"os/signal"
@@ -24,6 +27,16 @@ func InWatchChannelIDList(data []int64, c int64) bool {
 		}
 	}
 	return false
+}
+
+var codeAuthenticatorFunc auth.CodeAuthenticatorFunc = func(
+	ctx context.Context, sentCode *tg.AuthSentCode) (string, error) {
+	fmt.Print("Enter code: ")
+	code, err := bufio.NewReader(os.Stdin).ReadString('\n')
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(code), nil
 }
 
 func main() {
@@ -111,6 +124,15 @@ func run(ctx context.Context) error {
 	})
 
 	return client.Run(ctx, func(ctx context.Context) error {
+
+		flow := auth.NewFlow(
+			auth.CodeOnly("+15680544812", codeAuthenticatorFunc),
+			auth.SendCodeOptions{},
+		)
+		err := client.Auth().IfNecessary(ctx, flow)
+		if err != nil {
+			return err
+		}
 
 		user, err := client.Self(ctx)
 		if err != nil {

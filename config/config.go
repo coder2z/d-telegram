@@ -31,6 +31,7 @@ type Config struct {
 	DownloadDir        string   `yaml:"download_dir"`
 	MaxFileSize        int64    `yaml:"max_file_size"`
 	WatchFileKeyWord   []string `yaml:"watch_file_key_word"`
+	Phone              string   `yaml:"phone"`
 }
 
 func Get() *Config {
@@ -59,18 +60,17 @@ func defaultConfig() *Config {
 	return &Config{
 		AppID:       0,
 		AppHash:     "",
-		SessionFile: "session",
+		SessionFile: "./session/session",
 		WatchChannelIDList: []int64{
 			1778419548,
-			1524130209,
+			1549179925,
 		},
 		Log: Logger{
 			WriteSyncer: lumberjack.Logger{
 				Filename:   "./log/TGUpdate.log",
-				MaxSize:    10,
-				MaxBackups: 5,
-				MaxAge:     30,
-				Compress:   false,
+				MaxSize:    100,
+				MaxBackups: 20,
+				MaxAge:     7,
 			},
 			Level:      "info",
 			AddCaller:  true,
