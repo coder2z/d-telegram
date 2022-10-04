@@ -25,6 +25,7 @@ type Config struct {
 	AppID              int      `yaml:"app_id"`
 	AppHash            string   `yaml:"app_hash"`
 	SessionFile        string   `yaml:"session_file"`
+	SuperChannelIDList []int64  `yaml:"super_channel_id_list"`
 	WatchChannelIDList []int64  `yaml:"watch_channel_id_list"`
 	Log                Logger   `yaml:"log"`
 	DownloadPool       int      `yaml:"download_pool"`

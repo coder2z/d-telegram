@@ -1,14 +1,25 @@
-app_id: xxxxxx
-app_hash: xxxxxx
+app_id: 19967693
+app_hash: d2f7c6927d7ab92ee20e978ea88bb682
 session_file: ./session/session
 watch_channel_id_list:
   - 1549179925
   - 1778419548
+  - 1574825086
+  - 1524130209
+super_channel_id_list:
+  - 1524130209
 log:
   level: info
   debug: true
 download_pool: 1000
+max_file_size: 1024
 download_dir: ./downloads
 watch_file_key_word:
-  - 学习
-phone: +8618612345678
+  - 福利姬
+  - 网红
+  - cos
+  - 反差
+  - 口交
+  - 探花
+  - 芋圆
+phone: +8615680544812

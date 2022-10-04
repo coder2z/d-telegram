@@ -1,3 +1,5 @@
 .idea
 log
 configs/config-pre.yaml
+.DS_Store
+session

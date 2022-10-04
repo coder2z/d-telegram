@@ -97,6 +97,12 @@ func run(ctx context.Context) error {
 			return nil
 		}
 
+		// 如果是超级群不限制直接下载
+		if InWatchChannelIDList(init.SuperChannelIDList, channel.GetChannelID()) {
+			download.Push(message)
+			return nil
+		}
+
 		// 判断大小 小文件就不走这里下载了
 		if document.Size < init.MaxFileSize {
 			return nil
@@ -117,9 +123,6 @@ func run(ctx context.Context) error {
 			return nil
 		}
 		download.Push(message)
-
-		xlog.GetLogger().Info("Channel message", zap.Reflect("document", document))
-
 		return nil
 	})
 

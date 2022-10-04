@@ -5,7 +5,7 @@ ENV GOPROXY https://goproxy.cn
 ENV GO111MODULE on
 COPY . /app
 RUN go mod tidy -v
-RUN CGO_ENABLED=0 go build -o tgUpdateApp
+RUN CGO_ENABLED=0 go build -o tgUpdateApp api/update/main.go
 
 FROM alpine:3.10
 

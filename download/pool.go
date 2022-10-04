@@ -22,6 +22,7 @@ var (
 )
 
 func Push(item *tg.Message) {
+	xlog.GetLogger().Info("download.Push", zap.Any("item", item))
 	ch <- item
 }
 
